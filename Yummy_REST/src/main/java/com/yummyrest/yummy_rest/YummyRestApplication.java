@@ -9,4 +9,5 @@ public class YummyRestApplication {
     public static void main(String[] args) {
         SpringApplication.run(YummyRestApplication.class, args);
     }
+
 }
