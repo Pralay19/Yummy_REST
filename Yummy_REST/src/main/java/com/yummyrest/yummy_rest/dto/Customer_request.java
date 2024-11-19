@@ -1,10 +1,7 @@
 package com.yummyrest.yummy_rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public record Customer_request (
     @NotNull
@@ -18,6 +15,7 @@ public record Customer_request (
     @NotNull(message = "Email is required")
     @NotEmpty(message = "Email is required")
     @NotBlank(message = "Email is required")
+    @Email(message = "Email must be in correct format")
     @JsonProperty("email")
     String email,
     @NotNull(message = "Password is required")
