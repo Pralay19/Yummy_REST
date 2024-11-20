@@ -10,9 +10,6 @@ This repository contains a Spring Boot application for managing customer data wi
 - [Stage 1: Initial Setup](#stage-1-initial-setup)
 - [Stage 2: Implementing Login Functionality](#stage-2-implementing-login-functionality)
 - [Stage 3: Enhancing Security with JWT](#stage-3-enhancing-security-with-jwt)
-- [Practice Exercise: Product Entity](#practice-exercise-product-entity)
-- [Version Control](#version-control)
-- [Deliverables](#deliverables)
 
 ---
 
