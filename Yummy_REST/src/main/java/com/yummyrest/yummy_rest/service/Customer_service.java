@@ -32,6 +32,18 @@ public class Customer_service {
         return repo.findByEmail(email)
                 .orElseThrow(() -> new CustomerNotFoundException(format("No Customer found with provided email:%s",email)));
     }
+    public String updateCustomer(CustomerUpdateRequest customerUpdateRequest, String authorizationHeader) {
+        String token = authorizationHeader.substring(7);
+        String email = jwtHelper.extractEmail(token);
+        Customer customer = getCustomer(email);
+        if(customerUpdateRequest.firstName() != null)
+            customer.setFirstName(customerUpdateRequest.firstName());
+        if(customerUpdateRequest.lastName() != null)
+            customer.setLastName(customerUpdateRequest.lastName());
+        repo.save(customer);
+        return "Customer updated";
+    }
+
     public String loginCustomer(Login_request request) {
         Customer customer = getCustomer(request.email());
         if(!encryptionService.validates(request.password(), customer.getPassword())) {

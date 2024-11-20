@@ -33,4 +33,12 @@ public class Customer_controller {
     public ResponseEntity<String> createCustomer(@RequestBody @Valid Customer_request request) {
         return ResponseEntity.ok(customer_service.createCustomer(request));
     }
+
+    @PatchMapping
+    public ResponseEntity<String> updateCustomer(@RequestBody @Valid CustomerUpdateRequest customerUpdateRequest, HttpServletRequest request) {
+        if(!jwtHelper.validateAuthorizationHeader(request.getHeader("Authorization"))){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+        return ResponseEntity.ok(customerService.updateCustomer(customerUpdateRequest, request.getHeader("Authorization")));
+    }
 }
