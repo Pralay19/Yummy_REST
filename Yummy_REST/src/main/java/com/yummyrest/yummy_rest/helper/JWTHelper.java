@@ -48,7 +48,16 @@ public class JWTHelper {
     public Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
-    public Boolean validateToken(String token, String email) {
+    public Boolean validateToken(String token) {
         return !isTokenExpired(token);
     }
+    public Boolean validateAuthorizationHeader(String authorizationHeader) {
+        if(authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+            return false;
+        }
+        String token = authorizationHeader.substring(7);
+        String email = extractEmail(token);
+        return email != null && validateToken(token);
+    }
+
 }
